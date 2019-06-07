@@ -47,7 +47,10 @@
 	item.draggingFrame = self.bounds;
 	item.imageComponentsProvider = ^NSArray<NSDraggingImageComponent *> *{
 		NSDraggingImageComponent *iconComponent = [NSDraggingImageComponent draggingImageComponentWithKey:NSDraggingImageComponentIconKey];
-		iconComponent.contents = self.icon;
+		iconComponent.contents = [NSImage imageWithSize:self.bounds.size flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
+			[self.icon drawInRect:dstRect];
+			return YES;
+		}];
 		iconComponent.frame = self.bounds;
 		return @[iconComponent];
 	};
