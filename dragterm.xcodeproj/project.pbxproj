@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B243F65F22AAD31B002E86A2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B243F65E22AAD31B002E86A2 /* main.m */; };
+		B243F66D22AB0E5A002E86A2 /* DTDraggingSourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = B243F66C22AB0E5A002E86A2 /* DTDraggingSourceView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		B243F65B22AAD31B002E86A2 /* drag */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = drag; sourceTree = BUILT_PRODUCTS_DIR; };
 		B243F65E22AAD31B002E86A2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B243F66B22AB0E5A002E86A2 /* DTDraggingSourceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTDraggingSourceView.h; sourceTree = "<group>"; };
+		B243F66C22AB0E5A002E86A2 /* DTDraggingSourceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTDraggingSourceView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				B243F65E22AAD31B002E86A2 /* main.m */,
+				B243F66B22AB0E5A002E86A2 /* DTDraggingSourceView.h */,
+				B243F66C22AB0E5A002E86A2 /* DTDraggingSourceView.m */,
 			);
 			path = dragterm;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B243F66D22AB0E5A002E86A2 /* DTDraggingSourceView.m in Sources */,
 				B243F65F22AAD31B002E86A2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
