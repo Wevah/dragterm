@@ -41,6 +41,7 @@ static BOOL exitRunLoop = NO;
 }
 
 - (void)mouseDragged:(NSEvent *)event {
+	self.hidden = YES;
 	NSURL *fileURL = self.fileURL;
 	NSDraggingItem *item = [[NSDraggingItem alloc] initWithPasteboardWriter:fileURL];
 
