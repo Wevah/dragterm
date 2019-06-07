@@ -93,7 +93,7 @@ int main(int argc, const char * argv[]) {
 		NSPoint mouseLocation = NSEvent.mouseLocation;
 		frame.origin = mouseLocation;
 		frame.origin.x -= frame.size.width / 2.0;
-		frame.origin.y -= frame.size.width / 2.0;
+		frame.origin.y -= frame.size.height / 2.0;
 		[window setFrame:frame display:YES];
 
 		[NSApp activateIgnoringOtherApps:YES];
