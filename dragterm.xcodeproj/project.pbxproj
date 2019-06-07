@@ -23,7 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B243F65B22AAD31B002E86A2 /* dragterm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dragterm; sourceTree = BUILT_PRODUCTS_DIR; };
+		B243F65B22AAD31B002E86A2 /* drag */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = drag; sourceTree = BUILT_PRODUCTS_DIR; };
 		B243F65E22AAD31B002E86A2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,7 +49,7 @@
 		B243F65C22AAD31B002E86A2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B243F65B22AAD31B002E86A2 /* dragterm */,
+				B243F65B22AAD31B002E86A2 /* drag */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,9 +65,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B243F65A22AAD31B002E86A2 /* dragterm */ = {
+		B243F65A22AAD31B002E86A2 /* drag */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B243F66222AAD31B002E86A2 /* Build configuration list for PBXNativeTarget "dragterm" */;
+			buildConfigurationList = B243F66222AAD31B002E86A2 /* Build configuration list for PBXNativeTarget "drag" */;
 			buildPhases = (
 				B243F65722AAD31B002E86A2 /* Sources */,
 				B243F65822AAD31B002E86A2 /* Frameworks */,
@@ -77,9 +77,9 @@
 			);
 			dependencies = (
 			);
-			name = dragterm;
+			name = drag;
 			productName = dragterm;
-			productReference = B243F65B22AAD31B002E86A2 /* dragterm */;
+			productReference = B243F65B22AAD31B002E86A2 /* drag */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -108,7 +108,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B243F65A22AAD31B002E86A2 /* dragterm */,
+				B243F65A22AAD31B002E86A2 /* drag */,
 			);
 		};
 /* End PBXProject section */
@@ -266,7 +266,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B243F66222AAD31B002E86A2 /* Build configuration list for PBXNativeTarget "dragterm" */ = {
+		B243F66222AAD31B002E86A2 /* Build configuration list for PBXNativeTarget "drag" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B243F66322AAD31B002E86A2 /* Debug */,
