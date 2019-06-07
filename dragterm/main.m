@@ -84,7 +84,7 @@ int main(int argc, const char * argv[]) {
 		NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:NSWindowStyleMaskBorderless backing:NSBackingStoreBuffered defer:NO];
 		window.opaque = NO;
 		window.backgroundColor = NSColor.clearColor;
-		window.level = NSModalPanelWindowLevel;
+		window.level = NSStatusWindowLevel;
 
 		DTDraggingSourceView *sourceView = [[DTDraggingSourceView alloc] initWithFrame:frame];
 		window.contentView = sourceView;
