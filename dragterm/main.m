@@ -8,19 +8,18 @@
 
 #import <Cocoa/Cocoa.h>
 
-static BOOL exitRunLoop = NO;
-
 @interface DTDraggingSourceView : NSView <NSDraggingSource>
 
 @property (nonatomic, copy)	NSURL	*fileURL;
 @property (nonatomic, copy)	NSImage	*icon;
+@property (nonatomic)		BOOL	shouldExit;
 
 @end
 
 @implementation DTDraggingSourceView
 
 - (void)draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
-	exitRunLoop = YES;
+	_shouldExit = YES;
 }
 
 - (NSDragOperation)draggingSession:(nonnull NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {
@@ -97,7 +96,7 @@ int main(int argc, const char * argv[]) {
 		[NSApp activateIgnoringOtherApps:YES];
 		[window makeKeyAndOrderFront:nil];
 		
-		while (!exitRunLoop) {
+		while (!sourceView.shouldExit) {
 			NSEvent *event = [NSApp nextEventMatchingMask:NSEventMaskAny untilDate:NSDate.distantFuture inMode:NSDefaultRunLoopMode dequeue:YES];
 			[NSApp sendEvent:event];
 		}
