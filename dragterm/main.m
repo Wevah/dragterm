@@ -47,15 +47,10 @@ static BOOL exitRunLoop = NO;
 
 	item.draggingFrame = self.bounds;
 	item.imageComponentsProvider = ^NSArray<NSDraggingImageComponent *> *{
-		NSString *name;
-		[fileURL getResourceValue:&name forKey:NSURLLocalizedNameKey error:nil];
-
 		NSDraggingImageComponent *iconComponent = [NSDraggingImageComponent draggingImageComponentWithKey:NSDraggingImageComponentIconKey];
 		iconComponent.contents = self.icon;
 		iconComponent.frame = self.bounds;
-		NSDraggingImageComponent *nameComponent = [NSDraggingImageComponent draggingImageComponentWithKey:NSDraggingImageComponentLabelKey];
-		nameComponent.contents = name;
-		return @[iconComponent, nameComponent];
+		return @[iconComponent];
 	};
 
 	[self beginDraggingSessionWithItems:@[item] event:event source:self];
