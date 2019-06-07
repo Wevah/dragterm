@@ -40,7 +40,7 @@ static BOOL exitRunLoop = NO;
 	[self.icon drawInRect:self.bounds];
 }
 
-- (void)mouseDragged:(NSEvent *)event {
+- (void)mouseDown:(NSEvent *)event {
 	self.hidden = YES;
 	NSURL *fileURL = self.fileURL;
 	NSDraggingItem *item = [[NSDraggingItem alloc] initWithPasteboardWriter:fileURL];
