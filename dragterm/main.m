@@ -35,8 +35,17 @@
 	}
 }
 
+- (void)viewWillMoveToWindow:(NSWindow *)newWindow {
+	NSTrackingArea *trackingArea = [[NSTrackingArea alloc] initWithRect:self.bounds options:NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways owner:self userInfo:nil];
+	[self addTrackingArea:trackingArea];
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
 	[self.icon drawInRect:self.bounds];
+}
+
+- (void)mouseExited:(NSEvent *)event {
+	[NSApp terminate:nil];
 }
 
 - (void)mouseDown:(NSEvent *)event {
