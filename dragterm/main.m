@@ -77,7 +77,9 @@ int main(int argc, const char * argv[]) {
 			dprintf(STDERR_FILENO, "Couldn't create event tap; ensure Terminal has accessibility access\n");
 		} else {
 			CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, tap, 0);
+			CFRelease(tap);
 			CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopDefaultMode);
+			CFRelease(runLoopSource);
 		}
 
 		while (!sourceView.shouldExit) {
