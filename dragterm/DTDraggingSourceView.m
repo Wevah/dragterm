@@ -59,7 +59,7 @@ NSRect DTCenterRect(NSRect baseRect, CGFloat rectDim) {
 }
 
 - (void)mouseExited:(NSEvent *)event {
-	[NSApp terminate:nil];
+	self.shouldExit = YES;
 }
 
 - (void)mouseDown:(NSEvent *)event {
