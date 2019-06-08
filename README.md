@@ -6,7 +6,15 @@ The tool itself is called "drag", as that's a lot nicer to type than "dragterm".
 
 Moving the mouse too far before dragging will cancel the invocation, though I'm not sure that this is the best behavior.
 
-1.0.1 supports multiple files.
+## History
+
+- 1.0.2
+	- Escape key cancels invocation even before the drag (requires Terminal to have accessibility access).
+	- Increased drag-start area to 256 × 256.
+- 1.0.1
+	- Supports multiple files.
+- 1.0
+	- Initial release.
 
 ## Usage
 
