@@ -6,6 +6,12 @@ The tool itself is called "drag", as that's a lot nicer to type than "dragterm".
 
 Moving the mouse too far before dragging will cancel the invocation, though I'm not sure that this is the best behavior.
 
+## Usage
+
+`drag <file>`
+
+And drag the icon that appears under the mouse cursor.
+
 ## History
 
 - 1.0.2
@@ -15,12 +21,6 @@ Moving the mouse too far before dragging will cancel the invocation, though I'm 
 	- Supports multiple files.
 - 1.0
 	- Initial release.
-
-## Usage
-
-`drag <file>`
-
-And drag the icon that appears under the mouse cursor.
 
 ## Notes
 
