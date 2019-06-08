@@ -30,6 +30,7 @@
 		B243F66C22AB0E5A002E86A2 /* DTDraggingSourceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTDraggingSourceView.m; sourceTree = "<group>"; };
 		B243F66E22AB0F3A002E86A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B243F66F22AB4A08002E86A2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B243F67022AB4C00002E86A2 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +48,7 @@
 			isa = PBXGroup;
 			children = (
 				B243F66F22AB4A08002E86A2 /* README.md */,
+				B243F67022AB4C00002E86A2 /* LICENSE */,
 				B243F65D22AAD31B002E86A2 /* dragterm */,
 				B243F65C22AAD31B002E86A2 /* Products */,
 			);
