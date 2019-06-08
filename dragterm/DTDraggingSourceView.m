@@ -25,13 +25,12 @@
 	return NSDragOperationEvery;
 }
 
-- (void)setFileURL:(NSURL *)fileURL {
-	if (fileURL != _fileURL) {
-		_fileURL = fileURL;
-		NSImage *icon;
-		[self.fileURL getResourceValue:&icon forKey:NSURLEffectiveIconKey error:nil];
-		self.icon = icon;
-	}
+- (void)setURLs:(NSArray<NSURL *> *)urls {
+	_URLs = [urls copy];
+	NSURL *firstUrl = urls.firstObject;
+	NSImage *icon;
+	[firstUrl getResourceValue:&icon forKey:NSURLEffectiveIconKey error:nil];
+	self.icon = icon;
 }
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow {
@@ -51,21 +50,29 @@
 - (void)mouseDown:(NSEvent *)event {
 	[self removeTrackingArea:self.trackingArea];
 	self.hidden = YES;
-	NSURL *fileURL = self.fileURL;
-	NSDraggingItem *item = [[NSDraggingItem alloc] initWithPasteboardWriter:fileURL];
 
-	item.draggingFrame = self.bounds;
-	item.imageComponentsProvider = ^NSArray<NSDraggingImageComponent *> *{
-		NSDraggingImageComponent *iconComponent = [NSDraggingImageComponent draggingImageComponentWithKey:NSDraggingImageComponentIconKey];
-		iconComponent.contents = [NSImage imageWithSize:self.bounds.size flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
-			[self.icon drawInRect:dstRect];
-			return YES;
-		}];
-		iconComponent.frame = self.bounds;
-		return @[iconComponent];
-	};
+	NSMutableArray<NSDraggingItem *> *items = [NSMutableArray arrayWithCapacity:self.URLs.count];
 
-	[self beginDraggingSessionWithItems:@[item] event:event source:self];
+	for (NSURL *url in self.URLs) {
+		NSDraggingItem *item = [[NSDraggingItem alloc] initWithPasteboardWriter:url];
+		NSImage *icon;
+		[url getResourceValue:&icon forKey:NSURLEffectiveIconKey error:nil];
+
+		item.draggingFrame = self.bounds;
+		item.imageComponentsProvider = ^NSArray<NSDraggingImageComponent *> *{
+			NSDraggingImageComponent *iconComponent = [NSDraggingImageComponent draggingImageComponentWithKey:NSDraggingImageComponentIconKey];
+			iconComponent.contents = [NSImage imageWithSize:self.bounds.size flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
+				[icon drawInRect:dstRect];
+				return YES;
+			}];
+			iconComponent.frame = self.bounds;
+			return @[iconComponent];
+		};
+
+		[items addObject:item];
+	}
+
+	[self beginDraggingSessionWithItems:items event:event source:self];
 }
 
 @end

@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DTDraggingSourceView : NSView <NSDraggingSource>
 
-@property (nonatomic, copy)	NSURL	*fileURL;
-@property (nonatomic)		BOOL	shouldExit;
+@property (nonatomic, copy)	NSArray<NSURL *>	*URLs;
+@property (nonatomic)		BOOL				shouldExit;
 
 @end
 

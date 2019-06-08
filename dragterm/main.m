@@ -14,19 +14,29 @@ int main(int argc, const char * argv[]) {
 		if (argc < 2)
 			return 1;
 
-		NSString *file = @(argv[1]);
-
 		NSApplicationLoad();
 
 		NSURL *currentDirectoryURL = [NSURL fileURLWithPath:NSFileManager.defaultManager.currentDirectoryPath];
-		NSURL *fileURL = [NSURL fileURLWithPath:file relativeToURL:currentDirectoryURL].absoluteURL;
 
-		if (![fileURL checkResourceIsReachableAndReturnError:nil]) {
-			dprintf(STDERR_FILENO, "Couldn't find file %s\n", fileURL.path.UTF8String);
-			return 1;
+		NSMutableArray<NSURL *> *urls = [NSMutableArray arrayWithCapacity:argc - 1];
+
+		for (int i = 1; i < argc; ++i) {
+			NSURL *fileURL = [NSURL fileURLWithPath:@(argv[i]) relativeToURL:currentDirectoryURL].absoluteURL;
+
+			if (![fileURL checkResourceIsReachableAndReturnError:nil]) {
+				dprintf(STDERR_FILENO, "Couldn't find file %s\n", fileURL.path.UTF8String);
+				return 1;
+			}
+
+			[urls addObject:fileURL];
 		}
 
-		printf("Dragging %s\n", fileURL.path.UTF8String);
+		printf("%s\n", urls.description.UTF8String);
+
+		if (urls.count == 1)
+			printf("Dragging %s\n", urls[0].path.UTF8String);
+		else
+			printf("Dragging %lu files\n", urls.count);
 
 		NSRect frame = (NSRect){ { 0.0, 0.0 }, { 64.0, 64.0 }};
 
@@ -37,7 +47,7 @@ int main(int argc, const char * argv[]) {
 
 		DTDraggingSourceView *sourceView = [[DTDraggingSourceView alloc] initWithFrame:frame];
 		window.contentView = sourceView;
-		sourceView.fileURL = fileURL;
+		sourceView.URLs = urls;
 
 		NSPoint mouseLocation = NSEvent.mouseLocation;
 		frame.origin = mouseLocation;
@@ -47,7 +57,7 @@ int main(int argc, const char * argv[]) {
 
 		[NSApp activateIgnoringOtherApps:YES];
 		[window makeKeyAndOrderFront:nil];
-		
+
 		while (!sourceView.shouldExit) {
 			NSEvent *event = [NSApp nextEventMatchingMask:NSEventMaskAny untilDate:NSDate.distantFuture inMode:NSDefaultRunLoopMode dequeue:YES];
 			[NSApp sendEvent:event];
