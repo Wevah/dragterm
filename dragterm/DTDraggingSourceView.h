@@ -12,10 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DTDraggingSourceView : NSView <NSDraggingSource>
 
-@property (nonatomic, copy)	NSArray<NSURL *>	*URLs;
-@property (nonatomic)		BOOL				shouldExit;
+@property (nonatomic, copy)			NSArray<NSURL *>	*URLs;
+@property (nonatomic, readonly)		BOOL				shouldExit;
 
-@property (nonatomic)		CGFloat			iconSize;
+@property (nonatomic)				CGFloat			iconSize;
 
 @end
 

@@ -13,6 +13,8 @@
 @property (nonatomic)		NSTrackingArea	*trackingArea;
 @property (nonatomic, copy)	NSImage			*icon;
 
+@property (nonatomic)		BOOL			shouldExit;
+
 @end
 
 NSRect DTCenterRect(NSRect baseRect, CGFloat rectDim) {
