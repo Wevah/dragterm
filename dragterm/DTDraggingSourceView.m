@@ -62,7 +62,7 @@ NSRect DTCenterRect(NSRect baseRect, CGFloat rectDim) {
 
 - (void)mouseDown:(NSEvent *)event {
 	[self removeTrackingArea:self.trackingArea];
-	self.hidden = YES;
+	[self.window orderOut:nil];
 
 	NSMutableArray<NSDraggingItem *> *items = [NSMutableArray arrayWithCapacity:self.URLs.count];
 
