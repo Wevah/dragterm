@@ -69,17 +69,18 @@ NSRect DTCenterRect(NSRect baseRect, CGFloat rectDim) {
 	for (NSURL *url in self.URLs) {
 		NSDraggingItem *item = [[NSDraggingItem alloc] initWithPasteboardWriter:url];
 		NSImage *icon;
+		CGFloat iconSize = self.iconSize;
 		[url getResourceValue:&icon forKey:NSURLEffectiveIconKey error:nil];
 
-		item.draggingFrame = self.bounds;
+		item.draggingFrame = DTCenterRect(self.bounds, iconSize);
 
 		item.imageComponentsProvider = ^NSArray<NSDraggingImageComponent *> *{
 			NSDraggingImageComponent *iconComponent = [NSDraggingImageComponent draggingImageComponentWithKey:NSDraggingImageComponentIconKey];
-			iconComponent.contents = [NSImage imageWithSize:(NSSize){ self.iconSize, self.iconSize } flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
+			iconComponent.contents = [NSImage imageWithSize:(NSSize){ iconSize, iconSize } flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
 				[icon drawInRect:dstRect];
 				return YES;
 			}];
-			iconComponent.frame = DTCenterRect(self.bounds, self.iconSize);
+			iconComponent.frame = (NSRect){ { 0.0, 0.0 }, { iconSize, iconSize } };
 			return @[iconComponent];
 		};
 
