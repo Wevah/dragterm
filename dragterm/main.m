@@ -9,6 +9,19 @@
 #import <Cocoa/Cocoa.h>
 #import "DTDraggingSourceView.h"
 
+CGEventRef tapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *userInfo) {
+	UniChar chars[2];
+	UniCharCount count;
+	CGEventKeyboardGetUnicodeString(event, 2, &count, chars);
+
+	if (chars[0] == '\e') {
+		exit(0);
+		return NULL;
+	}
+
+	return event;
+}
+
 int main(int argc, const char * argv[]) {
 	@autoreleasepool {
 		if (argc < 2)
@@ -56,8 +69,13 @@ int main(int argc, const char * argv[]) {
 		[NSApp activateIgnoringOtherApps:YES];
 		[window makeKeyAndOrderFront:nil];
 
+		CFMachPortRef tap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, CGEventMaskBit(kCGEventKeyDown), tapCallback, NULL);
+		CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, tap, 0);
+		CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopDefaultMode);
+
 		while (!sourceView.shouldExit) {
 			NSEvent *event = [NSApp nextEventMatchingMask:NSEventMaskAny untilDate:NSDate.distantFuture inMode:NSDefaultRunLoopMode dequeue:YES];
+
 			[NSApp sendEvent:event];
 		}
 	}
