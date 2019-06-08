@@ -81,6 +81,9 @@ int main(int argc, const char * argv[]) {
 		while (!sourceView.shouldExit) {
 			NSEvent *event = [NSApp nextEventMatchingMask:NSEventMaskAny untilDate:NSDate.distantFuture inMode:NSDefaultRunLoopMode dequeue:YES];
 
+			if (event.type == NSLeftMouseDown)
+				CGEventTapEnable(tap, false);
+
 			[NSApp sendEvent:event];
 		}
 	}
