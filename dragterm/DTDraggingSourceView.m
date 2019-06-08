@@ -27,10 +27,16 @@
 
 - (void)setURLs:(NSArray<NSURL *> *)urls {
 	_URLs = [urls copy];
-	NSURL *firstUrl = urls.firstObject;
 	NSImage *icon;
-	[firstUrl getResourceValue:&icon forKey:NSURLEffectiveIconKey error:nil];
+
+	if (urls.count == 1) {
+		NSURL *firstUrl = urls.firstObject;
+		[firstUrl getResourceValue:&icon forKey:NSURLEffectiveIconKey error:nil];
+	} else
+		icon = [NSImage imageNamed:NSImageNameMultipleDocuments];
+
 	self.icon = icon;
+
 }
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow {
