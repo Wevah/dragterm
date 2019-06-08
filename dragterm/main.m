@@ -74,7 +74,7 @@ int main(int argc, const char * argv[]) {
 		CFMachPortRef tap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, CGEventMaskBit(kCGEventKeyDown), tapCallback, NULL);
 
 		if (!tap) {
-			dprintf(STDERR_FILENO, "Couldn't create event tap; ensure Terminal has accessibility access\n");
+			dprintf(STDERR_FILENO, "Couldn't create event tap for escape key; ensure Terminal has accessibility access\n");
 		} else {
 			CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, tap, 0);
 			CFRelease(tap);
