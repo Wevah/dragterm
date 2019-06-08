@@ -31,8 +31,6 @@ int main(int argc, const char * argv[]) {
 			[urls addObject:fileURL];
 		}
 
-		printf("%s\n", urls.description.UTF8String);
-
 		if (urls.count == 1)
 			printf("Dragging %s\n", urls[0].path.UTF8String);
 		else
