@@ -15,6 +15,13 @@
 
 @end
 
+NSRect DTCenterRect(NSRect baseRect, CGFloat rectDim) {
+	NSRect rect = NSZeroRect;
+	rect.size = (NSSize){ rectDim, rectDim };
+	rect.origin = (NSPoint){ (baseRect.size.width - rectDim) / 2.0, (baseRect.size.height - rectDim) / 2.0};
+	return rect;
+}
+
 @implementation DTDraggingSourceView
 
 - (void)draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
@@ -46,7 +53,7 @@
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
-	[self.icon drawInRect:self.bounds];
+	[self.icon drawInRect:DTCenterRect(self.bounds, self.iconSize)];
 }
 
 - (void)mouseExited:(NSEvent *)event {
@@ -65,13 +72,14 @@
 		[url getResourceValue:&icon forKey:NSURLEffectiveIconKey error:nil];
 
 		item.draggingFrame = self.bounds;
+
 		item.imageComponentsProvider = ^NSArray<NSDraggingImageComponent *> *{
 			NSDraggingImageComponent *iconComponent = [NSDraggingImageComponent draggingImageComponentWithKey:NSDraggingImageComponentIconKey];
-			iconComponent.contents = [NSImage imageWithSize:self.bounds.size flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
+			iconComponent.contents = [NSImage imageWithSize:(NSSize){ self.iconSize, self.iconSize } flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
 				[icon drawInRect:dstRect];
 				return YES;
 			}];
-			iconComponent.frame = self.bounds;
+			iconComponent.frame = DTCenterRect(self.bounds, self.iconSize);
 			return @[iconComponent];
 		};
 

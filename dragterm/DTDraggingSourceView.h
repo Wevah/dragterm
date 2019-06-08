@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)	NSArray<NSURL *>	*URLs;
 @property (nonatomic)		BOOL				shouldExit;
 
+@property (nonatomic)		CGFloat			iconSize;
+
 @end
 
 NS_ASSUME_NONNULL_END

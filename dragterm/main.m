@@ -49,15 +49,17 @@ int main(int argc, const char * argv[]) {
 		else
 			printf("Dragging %lu files\n", urls.count);
 
-		NSRect frame = (NSRect){ { 0.0, 0.0 }, { 64.0, 64.0 }};
+		NSRect frame = (NSRect){ { 0.0, 0.0 }, { 256.0, 256.0 }};
 
 		NSWindow *window = [[NSWindow alloc] initWithContentRect:frame styleMask:NSWindowStyleMaskBorderless backing:NSBackingStoreBuffered defer:NO];
 		window.opaque = NO;
 		window.backgroundColor = NSColor.clearColor;
 		window.level = NSStatusWindowLevel;
+		window.ignoresMouseEvents = NO;
 
 		DTDraggingSourceView *sourceView = [[DTDraggingSourceView alloc] initWithFrame:frame];
 		window.contentView = sourceView;
+		sourceView.iconSize = 64.0;
 		sourceView.URLs = urls;
 
 		NSPoint mouseLocation = NSEvent.mouseLocation;
