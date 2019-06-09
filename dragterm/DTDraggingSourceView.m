@@ -27,7 +27,12 @@ NSRect DTCenterRect(NSRect baseRect, CGFloat rectDim) {
 @implementation DTDraggingSourceView
 
 - (void)draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
-	_shouldExit = YES;
+	if (operation == NSDragOperationDelete) {
+		[NSWorkspace.sharedWorkspace recycleURLs:self.URLs completionHandler:^(NSDictionary<NSURL *,NSURL *> * _Nonnull newURLs, NSError * _Nullable error) {
+			self.shouldExit = YES;
+		}];
+	} else
+		self.shouldExit = YES;
 }
 
 - (NSDragOperation)draggingSession:(nonnull NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {
