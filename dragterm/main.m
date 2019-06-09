@@ -68,7 +68,6 @@ int main(int argc, const char * argv[]) {
 		frame.origin.y -= frame.size.height / 2.0;
 		[window setFrame:frame display:YES];
 
-		[NSApp activateIgnoringOtherApps:YES];
 		[window makeKeyAndOrderFront:nil];
 
 		CFMachPortRef tap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, CGEventMaskBit(kCGEventKeyDown), tapCallback, NULL);
