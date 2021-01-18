@@ -33,6 +33,7 @@ static void printVersion(void) {
 	NSBundle *bundle = NSBundle.mainBundle;
 
 	printf("dragterm %s (v%s)\n", ((NSString *)[bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]).UTF8String, ((NSString *)[bundle objectForInfoDictionaryKey:@"CFBundleVersion"]).UTF8String);
+
 	printf("%s\n", ASCIIfy([bundle objectForInfoDictionaryKey:@"NSHumanReadableCopyright"]).UTF8String);
 }
 
@@ -70,6 +71,10 @@ int main(int argc, char * const argv[]) {
 		int diff = parseArguments(argc, argv);
 		argc -= diff;
 		argv += diff;
+
+		if (argc < 1) {
+			return 1;
+		}
 
 		NSApplicationLoad();
 
