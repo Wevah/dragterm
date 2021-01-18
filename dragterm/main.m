@@ -23,13 +23,20 @@ CGEventRef tapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event
 	return event;
 }
 
-void printVersion(void) {
+static NSString *ASCIIfy(NSString *str) {
+	str = [str stringByReplacingOccurrencesOfString:@"©" withString:@"Copyright"];
+	str = [str stringByReplacingOccurrencesOfString:@"–" withString:@"-"]; // en dash to hyphen
+	return str;
+}
+
+static void printVersion(void) {
 	NSBundle *bundle = NSBundle.mainBundle;
 
 	printf("dragterm %s (v%s)\n", ((NSString *)[bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]).UTF8String, ((NSString *)[bundle objectForInfoDictionaryKey:@"CFBundleVersion"]).UTF8String);
+	printf("%s\n", ASCIIfy([bundle objectForInfoDictionaryKey:@"NSHumanReadableCopyright"]).UTF8String);
 }
 
-void printUsage() {
+static void printUsage() {
 	printf("Usage: drag <files>\n");
 }
 
