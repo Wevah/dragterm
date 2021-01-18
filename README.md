@@ -18,6 +18,7 @@ And drag the icon that appears under the mouse cursor.
 	- Escape key cancels invocation even before the drag (requires Terminal to have accessibility access).
 	- Increased drag-start area to 256 × 256.
 	- Supports dragging files to the Trash.
+	- Added `--version` and `--help` options.
 - 1.0.1
 	- Supports multiple files.
 - 1.0

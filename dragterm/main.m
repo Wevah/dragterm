@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "DTDraggingSourceView.h"
+#import <getopt.h>
 
 CGEventRef tapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *userInfo) {
 	UniChar chars[2];
@@ -22,10 +23,46 @@ CGEventRef tapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event
 	return event;
 }
 
-int main(int argc, const char * argv[]) {
+void printVersion(void) {
+	NSBundle *bundle = NSBundle.mainBundle;
+
+	printf("dragterm %s (v%s)\n", ((NSString *)[bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]).UTF8String, ((NSString *)[bundle objectForInfoDictionaryKey:@"CFBundleVersion"]).UTF8String);
+}
+
+void printUsage() {
+	printf("Usage: drag <files>\n");
+}
+
+int parseArguments(int argc, char * const argv[]) {
+	struct option longopts[] = {
+		{ "version", no_argument, NULL, 'v' },
+		{ "help", no_argument, NULL, 'h' }
+	};
+	int c;
+	while ((c = getopt_long(argc, argv, "vh", longopts, NULL)) != -1) {
+		switch (c) {
+			case 'v':
+				printVersion();
+				exit(0);
+			case 'h':
+				printUsage();
+				exit(0);
+		}
+	}
+
+	return optind;
+}
+
+int main(int argc, char * const argv[]) {
 	@autoreleasepool {
-		if (argc < 2)
+		if (argc < 2) {
+			printUsage();
 			return 1;
+		}
+
+		int diff = parseArguments(argc, argv);
+		argc -= diff;
+		argv += diff;
 
 		NSApplicationLoad();
 
@@ -33,7 +70,7 @@ int main(int argc, const char * argv[]) {
 
 		NSMutableArray<NSURL *> *urls = [NSMutableArray arrayWithCapacity:argc - 1];
 
-		for (int i = 1; i < argc; ++i) {
+		for (int i = 0; i < argc; ++i) {
 			NSURL *fileURL = [NSURL fileURLWithPath:@(argv[i]) relativeToURL:currentDirectoryURL].absoluteURL;
 
 			if (![fileURL checkResourceIsReachableAndReturnError:nil]) {
