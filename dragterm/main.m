@@ -10,19 +10,6 @@
 #import "DTDraggingSourceView.h"
 #import <getopt.h>
 
-CGEventRef tapCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *userInfo) {
-	UniChar chars[2];
-	UniCharCount count;
-	CGEventKeyboardGetUnicodeString(event, 2, &count, chars);
-
-	if (chars[0] == '\e') {
-		exit(0);
-		return NULL;
-	}
-
-	return event;
-}
-
 static NSString *ASCIIfy(NSString *str) {
 	str = [str stringByReplacingOccurrencesOfString:@"©" withString:@"Copyright"];
 	str = [str stringByReplacingOccurrencesOfString:@"–" withString:@"-"]; // en dash to hyphen
@@ -119,23 +106,8 @@ int main(int argc, char * const argv[]) {
 
 		[window makeKeyAndOrderFront:nil];
 
-		CFMachPortRef tap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, kCGEventTapOptionDefault, CGEventMaskBit(kCGEventKeyDown), tapCallback, NULL);
-
-		if (!tap) {
-			dprintf(STDERR_FILENO, "Couldn't create event tap for escape key; ensure Terminal has accessibility access\n");
-		} else {
-			CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, tap, 0);
-			CFRelease(tap);
-			CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopDefaultMode);
-			CFRelease(runLoopSource);
-		}
-
 		while (!sourceView.shouldExit) {
 			NSEvent *event = [NSApp nextEventMatchingMask:NSEventMaskAny untilDate:NSDate.distantFuture inMode:NSDefaultRunLoopMode dequeue:YES];
-
-			if (tap && event.type == NSLeftMouseDown)
-				CGEventTapEnable(tap, false);
-
 			[NSApp sendEvent:event];
 		}
 	}
