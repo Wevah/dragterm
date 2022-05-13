@@ -4,7 +4,7 @@ Drag and drop from the command-line, updated to use modern API.
 
 The tool itself is called “drag”, as that's a lot nicer to type than “dragterm”.
 
-Moving the mouse too far before dragging will cancel the invocation, though I'm not sure that this is the best behavior.
+Moving the mouse far enough away from the displayed icon before dragging will cancel.
 
 ## Usage
 
@@ -15,7 +15,6 @@ And drag the icon that appears under the mouse cursor.
 ## History
 
 - 1.0.2
-	- Escape key cancels invocation even before the drag (requires Terminal to have accessibility access).
 	- Increased drag-start area to 256 × 256.
 	- Supports dragging files to the Trash.
 	- Added `--version` and `--help` options.
