@@ -65,12 +65,10 @@ int main(int argc, char * const argv[]) {
 
 		NSApplicationLoad();
 
-		NSURL *currentDirectoryURL = [NSURL fileURLWithPath:NSFileManager.defaultManager.currentDirectoryPath];
-
 		NSMutableArray<NSURL *> *urls = [NSMutableArray arrayWithCapacity:argc - 1];
 
 		for (int i = 0; i < argc; ++i) {
-			NSURL *fileURL = [NSURL fileURLWithPath:@(argv[i]) relativeToURL:currentDirectoryURL].absoluteURL;
+			NSURL *fileURL = [NSURL fileURLWithPath:@(argv[i])].absoluteURL;
 
 			if (![fileURL checkResourceIsReachableAndReturnError:nil]) {
 				dprintf(STDERR_FILENO, "Couldn't find file %s\n", fileURL.path.UTF8String);
