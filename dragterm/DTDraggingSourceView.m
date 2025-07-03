@@ -10,10 +10,8 @@
 
 @interface DTDraggingSourceView ()
 
-@property (nonatomic)		NSTrackingArea	*trackingArea;
-@property (nonatomic, copy)	NSImage			*icon;
-
-@property (nonatomic)		BOOL			shouldExit;
+@property (nonatomic) NSTrackingArea *trackingArea;
+@property (nonatomic, copy)	NSImage *icon;
 
 @end
 
@@ -29,10 +27,11 @@ NSRect DTCenterRect(NSRect baseRect, CGFloat rectDim) {
 - (void)draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
 	if (operation == NSDragOperationDelete) {
 		[NSWorkspace.sharedWorkspace recycleURLs:self.URLs completionHandler:^(NSDictionary<NSURL *,NSURL *> * _Nonnull newURLs, NSError * _Nullable error) {
-			self.shouldExit = YES;
+			[NSApp terminate:nil];
 		}];
-	} else
-		self.shouldExit = YES;
+	} else {
+		[NSApp terminate:nil];
+	}
 }
 
 - (NSDragOperation)draggingSession:(nonnull NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {
@@ -50,7 +49,6 @@ NSRect DTCenterRect(NSRect baseRect, CGFloat rectDim) {
 		icon = [NSImage imageNamed:NSImageNameMultipleDocuments];
 
 	self.icon = icon;
-
 }
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow {
@@ -64,7 +62,7 @@ NSRect DTCenterRect(NSRect baseRect, CGFloat rectDim) {
 }
 
 - (void)mouseExited:(NSEvent *)event {
-	self.shouldExit = YES;
+	[NSApp terminate:nil];
 }
 
 - (void)mouseDown:(NSEvent *)event {

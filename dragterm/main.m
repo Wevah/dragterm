@@ -24,7 +24,7 @@ static void printVersion(void) {
 	printf("%s\n", ASCIIfy([bundle objectForInfoDictionaryKey:@"NSHumanReadableCopyright"]).UTF8String);
 }
 
-static void printUsage() {
+static void printUsage(void) {
 	printf("Usage: drag <files>\n");
 }
 
@@ -102,10 +102,10 @@ int main(int argc, char * const argv[]) {
 		frame.origin.y -= frame.size.height / 2.0;
 		[window setFrame:frame display:YES];
 
-		[window makeKeyAndOrderFront:nil];
+		[window orderFront:nil];
 
-		while (!sourceView.shouldExit) {
-			NSEvent *event = [NSApp nextEventMatchingMask:NSEventMaskAny untilDate:NSDate.distantFuture inMode:NSDefaultRunLoopMode dequeue:YES];
+		while (1) {
+			NSEvent *event = [NSApp nextEventMatchingMask:NSEventMaskAny untilDate:NSDate.distantFuture inMode:NSEventTrackingRunLoopMode dequeue:YES];
 			[NSApp sendEvent:event];
 		}
 	}
