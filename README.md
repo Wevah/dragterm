@@ -2,13 +2,13 @@
 
 Drag and drop from the command-line, updated to use modern API.
 
-The tool itself is called “drag”, as that's a lot nicer to type than “dragterm”.
+The tool itself is called “`drag`”, as that's a lot nicer to type than “`dragterm`”.
 
 Moving the mouse far enough away from the displayed icon before dragging will cancel.
 
 ## Usage
 
-`drag <file>`
+`drag <files>`
 
 And drag the icon that appears under the mouse cursor.
 
