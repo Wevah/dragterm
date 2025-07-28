@@ -31,7 +31,8 @@ static void printUsage(void) {
 int parseArguments(int argc, char * const argv[]) {
 	struct option longopts[] = {
 		{ "version", no_argument, NULL, 'v' },
-		{ "help", no_argument, NULL, 'h' }
+		{ "help", no_argument, NULL, 'h' },
+		{ NULL, 0, NULL, 0 }
 	};
 	int c;
 	while ((c = getopt_long(argc, argv, "vh", longopts, NULL)) != -1) {
