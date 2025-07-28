@@ -15,6 +15,7 @@ And drag the icon that appears under the mouse cursor.
 ## History
 
 - 1.0.3
+	- Use the relative path as typed when displaying a “not found” error, instead of the full path.
 	- Fixes a crash when passing an unrecognized option.
 - 1.0.2
 	- Increased drag-start area to 256 × 256.
