@@ -1,4 +1,4 @@
-#  dragterm 1.0.2
+#  dragterm 1.0.3
 
 Drag and drop from the command-line, updated to use modern API.
 
@@ -14,6 +14,8 @@ And drag the icon that appears under the mouse cursor.
 
 ## History
 
+- 1.0.3
+	- Fixes a crash when passing an unrecognized option.
 - 1.0.2
 	- Increased drag-start area to 256 × 256.
 	- Supports dragging files to the Trash.
