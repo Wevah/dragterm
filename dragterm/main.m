@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "DTDraggingSourceView.h"
 #import <getopt.h>
+#import <termios.h>
 
 static NSString *ASCIIfy(NSString *str) {
 	str = [str stringByReplacingOccurrencesOfString:@"©" withString:@"Copyright"];
@@ -49,8 +50,14 @@ int parseArguments(int argc, char * const argv[]) {
 	return optind;
 }
 
+void signalHandler(int signum) {
+	exit(0);
+}
+
 int main(int argc, char * const argv[]) {
 	@autoreleasepool {
+		signal(SIGINT, signalHandler);
+
 		if (argc < 2) {
 			printUsage();
 			return 1;
@@ -104,6 +111,27 @@ int main(int argc, char * const argv[]) {
 		[window setFrame:frame display:YES];
 
 		[window orderFront:nil];
+
+		NSFileHandle.fileHandleWithStandardInput.readabilityHandler = ^(NSFileHandle *fileHandle) {
+			NSData *data = fileHandle.availableData;
+
+			if (data.length == 1) {
+				char *bytes = (char *)data.bytes;
+
+				if (bytes[0] == '\e' || bytes[0] == 0x04)
+					exit(0);
+			}
+
+			putchar('\a');
+			fflush(stdout);
+		};
+
+		struct termios info;
+		tcgetattr(0, &info);
+		info.c_lflag &= ~(ICANON | ECHO);
+		info.c_cc[VMIN] = 0;
+		info.c_cc[VTIME] = 0;
+		tcsetattr(0, TCSANOW, &info);
 
 		while (1) {
 			NSEvent *event = [NSApp nextEventMatchingMask:NSEventMaskAny untilDate:NSDate.distantFuture inMode:NSEventTrackingRunLoopMode dequeue:YES];
