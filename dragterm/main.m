@@ -118,7 +118,7 @@ int main(int argc, char * const argv[]) {
 			if (data.length == 1) {
 				char *bytes = (char *)data.bytes;
 
-				if (bytes[0] == '\e' || bytes[0] == 0x04)
+				if (bytes[0] == '\e' || bytes[0] == 0x04) // 0x04 is END OF TRANSMISSION (Ctrl-D)
 					exit(0);
 			}
 
