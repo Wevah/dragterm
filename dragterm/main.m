@@ -118,12 +118,11 @@ int main(int argc, char * const argv[]) {
 			if (data.length == 1) {
 				char *bytes = (char *)data.bytes;
 
-				if (bytes[0] == '\e' || bytes[0] == 0x04) // 0x04 is END OF TRANSMISSION (Ctrl-D)
+				if (bytes[0] == '\e' || bytes[0] == 0x04 || bytes[0] == 'q') // 0x04 is END OF TRANSMISSION (Ctrl-D)
 					exit(0);
 			}
 
-			putchar('\a');
-			fflush(stdout);
+			putc('\a', stderr);
 		};
 
 		struct termios info;
