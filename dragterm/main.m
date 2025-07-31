@@ -25,8 +25,8 @@ static void printVersion(void) {
 	printf("%s\n", ASCIIfy([bundle objectForInfoDictionaryKey:@"NSHumanReadableCopyright"]).UTF8String);
 }
 
-static void printUsage(void) {
-	printf("Usage: drag <files>\n");
+static void printUsage(BOOL stdErr) {
+	fprintf(stdErr ? stderr : stdout, "Usage: drag <files>\n");
 }
 
 int parseArguments(int argc, char * const argv[]) {
@@ -42,7 +42,7 @@ int parseArguments(int argc, char * const argv[]) {
 				printVersion();
 				exit(0);
 			case 'h':
-				printUsage();
+				printUsage(NO);
 				exit(0);
 		}
 	}
@@ -59,7 +59,7 @@ int main(int argc, char * const argv[]) {
 		signal(SIGINT, signalHandler);
 
 		if (argc < 2) {
-			printUsage();
+			printUsage(YES);
 			return 1;
 		}
 
