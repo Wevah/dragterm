@@ -67,9 +67,8 @@ int main(int argc, char * const argv[]) {
 		argc -= diff;
 		argv += diff;
 
-		if (argc < 1) {
+		if (argc < 1)
 			return 1;
-		}
 
 		NSApplicationLoad();
 
