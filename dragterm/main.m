@@ -29,7 +29,7 @@ static void printUsage(BOOL stdErr) {
 	fprintf(stdErr ? stderr : stdout, "Usage: drag <files>\n");
 }
 
-int parseArguments(int argc, char * const argv[]) {
+static int parseArguments(int argc, char * const argv[]) {
 	struct option longopts[] = {
 		{ "version", no_argument, NULL, 'v' },
 		{ "help", no_argument, NULL, 'h' },
@@ -50,7 +50,7 @@ int parseArguments(int argc, char * const argv[]) {
 	return optind;
 }
 
-void signalHandler(int signum) {
+static void signalHandler(int signum) {
 	exit(0);
 }
 

@@ -15,7 +15,7 @@
 
 @end
 
-NSRect DTCenterRect(NSRect baseRect, CGFloat rectDim) {
+static NSRect DTCenterRect(NSRect baseRect, CGFloat rectDim) {
 	NSRect rect = NSZeroRect;
 	rect.size = (NSSize){ rectDim, rectDim };
 	rect.origin = (NSPoint){ (baseRect.size.width - rectDim) / 2.0, (baseRect.size.height - rectDim) / 2.0};
