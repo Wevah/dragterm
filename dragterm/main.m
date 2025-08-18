@@ -26,7 +26,7 @@ static void printVersion(void) {
 }
 
 static void printUsage(BOOL stdErr) {
-	fprintf(stdErr ? stderr : stdout, "Usage: drag <files>\n");
+	fprintf(stdErr ? stderr : stdout, "Usage: %s <files>\n", getprogname());
 }
 
 static int parseArguments(int argc, char * const argv[]) {
