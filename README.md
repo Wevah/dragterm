@@ -4,15 +4,13 @@ Drag and drop from the command-line, updated to use modern API.
 
 The tool itself is called “`drag`”, as that's a lot nicer to type than “`dragterm`”.
 
-Moving the mouse far enough away from the displayed icon before dragging will cancel.
-
 ## Usage
 
 `drag <files>`
 
 And drag the icon that appears under the mouse cursor.
 
-Pressing Escape, Ctrl-C, or Ctrl-D, or moving the mouse far enough from the icon before dragging will cancel.
+Pressing Escape, q, Ctrl-C, or Ctrl-D, or moving the mouse far enough from the icon before dragging will cancel.
 
 ## History
 
