@@ -1,4 +1,4 @@
-#  dragterm 1.0.3
+#  dragterm 1.1
 
 Drag and drop from the command-line, updated to use modern API.
 
@@ -14,7 +14,7 @@ Pressing Escape, q, Ctrl-C, or Ctrl-D, or moving the mouse far enough from the i
 
 ## History
 
-- 1.0.3
+- 1.1
 	- Uses the relative path as typed when displaying a “not found” error, instead of the full path.
 	- Restored the ability to cancel with the Escape key (or `q`/`Ctrl-C`/`Ctrl-D`), without needing accessibility access.
 	- Fixes a crash when passing an unrecognized option.
