@@ -1,4 +1,4 @@
-#  dragterm 1.1
+# dragterm 1.1
 
 Drag and drop from the command-line, updated to use modern API.
 
