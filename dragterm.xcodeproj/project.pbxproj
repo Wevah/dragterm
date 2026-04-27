@@ -31,6 +31,7 @@
 		B243F66E22AB0F3A002E86A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B243F66F22AB4A08002E86A2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B243F67022AB4C00002E86A2 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B2C611E02FA02E7300D3CFEE /* drag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = drag.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +48,7 @@
 		B243F65222AAD31B002E86A2 = {
 			isa = PBXGroup;
 			children = (
+				B2C611E02FA02E7300D3CFEE /* drag.entitlements */,
 				B243F66F22AB4A08002E86A2 /* README.md */,
 				B243F67022AB4C00002E86A2 /* LICENSE */,
 				B243F65D22AAD31B002E86A2 /* dragterm */,
@@ -263,11 +265,13 @@
 		B243F66322AAD31B002E86A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = drag.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				CURRENT_PROJECT_VERSION = 26;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/dragterm/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.derailer.dragterm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -277,11 +281,13 @@
 		B243F66422AAD31B002E86A2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = drag.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				CURRENT_PROJECT_VERSION = 26;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/dragterm/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = org.derailer.dragterm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
