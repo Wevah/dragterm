@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleGetInfoString</key>
-	<string>dragterm 1.0.3 © 2019–2025 Nate Weaver (Wevah)/Derailer</string>
+	<string>dragterm 1.0.3 © 2019–2026 Nate Weaver (Wevah)/Derailer</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
