@@ -20,9 +20,12 @@ static NSString *ASCIIfy(NSString *str) {
 static void printVersion(void) {
 	NSBundle *bundle = NSBundle.mainBundle;
 
-	printf("dragterm %s (v%s)\n", ((NSString *)[bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"]).UTF8String, ((NSString *)[bundle objectForInfoDictionaryKey:@"CFBundleVersion"]).UTF8String);
+	NSString *shortVersion = [bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+	NSString *bundleVersion = [bundle objectForInfoDictionaryKey:@"CFBundleVersion"];
+	NSString *copyright = [bundle objectForInfoDictionaryKey:@"NSHumanReadableCopyright"];
 
-	printf("%s\n", ASCIIfy([bundle objectForInfoDictionaryKey:@"NSHumanReadableCopyright"]).UTF8String);
+	printf("dragterm %s (v%s)\n", shortVersion.UTF8String, bundleVersion.UTF8String);
+	printf("%s\n", ASCIIfy(copyright).UTF8String);
 }
 
 static void printUsage(BOOL stdErr) {
