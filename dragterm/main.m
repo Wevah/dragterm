@@ -81,7 +81,7 @@ int main(int argc, char * const argv[]) {
 			NSURL *fileURL = [NSURL fileURLWithPath:@(argv[i])].absoluteURL;
 
 			if (![fileURL checkResourceIsReachableAndReturnError:nil]) {
-				dprintf(STDERR_FILENO, "Couldn't find file: %s\n", argv[i]);
+				fprintf(stderr, "Couldn't find file: %s\n", argv[i]);
 				return 1;
 			}
 
